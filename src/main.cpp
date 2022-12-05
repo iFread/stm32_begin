@@ -58,7 +58,7 @@ void TIM2_Handler()
 	 //if( TIM2->SR& TIM_SR_CC1OF_Pos)
 	 //	 {
 	 //	 TIM2->SR&=~(1<<TIM_SR_CC1OF_Pos);
-if((tim2_cnt++)%3==0){
+if((tim2_cnt++)%9==0){
 
 	 if(up)
 	 	 {
@@ -116,7 +116,7 @@ st1.set_pin();
 st1.set_value(tim2_cnt, TIM2->CNT);
  // 1. если по возрастанию считыаем значения в структуру
 	 //2. если по убыванию - считаем разницу значений
-if(st1.cnt_reg & 1<<delay_echo::down)
+if(st1.st_down())
 	EXTI->IMR&=~(1<<EXTI_IMR_MR2_Pos);
 }
 
@@ -161,7 +161,7 @@ int main ()
 	 		//;
 
 
-if(st1.cnt_reg&1<<delay_echo::ready)
+if(st1.st_ready())
 {		st1.set_dist();
 	 	dist=st1.dist;
 
